@@ -1,6 +1,6 @@
-# sell
+# eleme-sell
 
-> sell app
+> eleme sell app
 
 ## Build Setup
 
