@@ -15,6 +15,27 @@ var port = process.env.PORT || config.dev.port
 var proxyTable = config.dev.proxyTable
 
 var app = express()
+
+
+var appData = require('../data.json');
+
+var apiRouter = express.Router();
+
+apiRouter.get('/seller', function (req, res) {
+  res.json({code: 0, msg: 'ok', data: appData.seller});
+});
+
+apiRouter.get('/goods', function (req, res) {
+  res.json({code: 0, msg: 'ok', data: appData.goods});
+});
+
+apiRouter.get('/ratings', function (req, res) {
+  res.json({code: 0, msg: 'ok', data: appData.ratings});
+});
+
+app.use('/api', apiRouter);
+
+
 var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
