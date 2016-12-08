@@ -9,6 +9,8 @@ import goods from 'components/goods/goods.vue';
 import ratings from 'components/ratings/ratings.vue';
 import seller from 'components/seller/seller.vue';
 
+import 'common/stylus/index.styl';
+
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
