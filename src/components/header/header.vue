@@ -24,6 +24,9 @@
       <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
       <i class="icon-keyboard_arrow_right"></i>
     </div>
+    <div class="bg">
+      <img :src="seller.avatar" width="100%" height="100%">
+    </div>
   </div>
 </template>
 
@@ -41,78 +44,79 @@
 <style type="text/stylus" lang="stylus">
   @import "../../common/stylus/mixin.styl";
   div.header
-    color: #fff
-    background-color: #999
+    position: relative;
+    color: #fff;
+    background-color: rgba(7, 17, 27, .5);
     & > div.content-wrapper
-      position: relative
-      padding: 24px 12px 18px 24px
-      font-size: 0
+      position: relative;
+      padding: 24px 12px 18px 24px;
+      font-size: 0;
       & > div.avatar
-        display: inline-block
-        vertical-align: top
+        display: inline-block;
+        vertical-align: top;
         & > img
-          border-radius: 2px
+          border-radius: 2px;
       & > div.content
-        display: inline-block
-        margin-left: 16px
+        display: inline-block;
+        margin-left: 16px;
         & > div.title
-          margin: 2px 0 8px 0
+          margin: 2px 0 8px 0;
           & > span.brand
-            display: inline-block
-            vertical-align: top
-            width: 30px
-            height: 18px
-            bg-image('brand')
-            background-size: 30px 18px
-            background-repeat: no-repeat
+            display: inline-block;
+            vertical-align: top;
+            width: 30px;
+            height: 18px;
+            bg-image('brand');
+            background-size: 30px 18px;
+            background-repeat: no-repeat;
           & > span.name
-            margin-left: 6px
-            font-size: 16px
-            line-height: 18px
-            font-weight: bold
+            margin-left: 6px;
+            font-size: 16px;
+            line-height: 18px;
+            font-weight: bold;
         & > div.description
-          margin-bottom: 10px
-          line-height: 12px
-          font-size: 12px
+          margin-bottom: 10px;
+          line-height: 12px;
+          font-size: 12px;
         & > div.support
           & > span.icon
-            display: inline-block
-            vertical-align: top
-            width: 12px
-            height: 12px
-            margin-right: 4px
-            background-size: 12px 12px
-            background-repeat: no-repeat
+            display: inline-block;
+            vertical-align: top;
+            width: 12px;
+            height: 12px;
+            margin-right: 4px;
+            background-size: 12px 12px;
+            background-repeat: no-repeat;
             &.decrease
-              bg-image('decrease_1')
+              bg-image('decrease_1');
             &.discount
-              bg-image('discount_1')
+              bg-image('discount_1');
             &.guarantee
-              bg-image('guarantee_1')
+              bg-image('guarantee_1');
             &.invoice
-              bg-image('invoice_1')
+              bg-image('invoice_1');
             &.special
-              bg-image('special_1')
+              bg-image('special_1');
           & > span.text
-            line-height: 12px
-            font-size: 10px
+            line-height: 12px;
+            font-size: 10px;
       & > div.support-count
-        position: absolute
-        right: 12px
-        bottom: 14px
-        padding: 0 8px
-        height: 24px
-        line-height: 24px
-        border-radius: 14px
-        background-color: rgba(0, 0, 0, .2)
-        text-align: center
+        position: absolute;
+        right: 12px;
+        bottom: 14px;
+        padding: 0 8px;
+        height: 24px;
+        line-height: 24px;
+        border-radius: 14px;
+        background-color: rgba(0, 0, 0, .2);
+        text-align: center;
         & > span.count
-          vertical-align: top
-          font-size: 10px
+          vertical-align: top;
+          font-size: 10px;
         & > i.icon-keyboard_arrow_right
-          margin-left: 2px
-          line-height: 24px
-          font-size: 10px
+          margin-left: 2px;
+          line-height: 24px;
+          font-size: 10px;
     & > div.bulletin-wrapper
       position: relative;
       height: 28px;
@@ -139,4 +143,12 @@
         position: absolute;
         right: 10px;
         top: 8px;
+    & > div.bg
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      filter: blur(10px);
 </style>
