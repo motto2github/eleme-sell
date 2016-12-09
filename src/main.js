@@ -11,6 +11,8 @@ import seller from 'components/seller/seller.vue';
 
 import 'common/stylus/index.styl';
 
+import '../node_modules/animate.css/animate.css';
+
 Vue.use(VueRouter);
 Vue.use(VueResource);
 

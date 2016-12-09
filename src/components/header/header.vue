@@ -27,7 +27,7 @@
     <div class="bg">
       <img :src="seller.avatar" width="100%" height="100%">
     </div>
-    <div v-show="detailShow" class="detail" transition="fade">
+    <div v-show="detailShow" class="detail animated" :class="animateClass">
       <div class="detail-wrapper clearfix">
         <div class="detail-main">
           <h1 class="name">{{seller.name}}</h1>
@@ -70,15 +70,20 @@
     },
     data () {
       return {
-        detailShow: false
+        detailShow: false,
+        animateClass: ''
       };
     },
     methods: {
       showDetail () {
         this.detailShow = true;
+        this.animateClass = 'fadeIn';
       },
       hideDetail () {
-        this.detailShow = false;
+        this.animateClass = 'fadeOut';
+        setTimeout(() => {
+          this.detailShow = false;
+        }, 500);
       }
     },
     created () {
@@ -209,13 +214,9 @@
       width: 100%;
       height: 100%;
       overflow: auto;
-      transition: all .5s;
-      &.fade-transition
-        opacity: 1;
-        background-color: rgba(7, 17, 27, .8);
-      &.fade-enter, &.fade-leave
-        opacity: 0;
-        background-color: rgba(7, 17, 27, 0);
+      background-color: rgba(7, 17, 27, .8);
+      backdrop-filter: blur(10px);
+      animation-duration: .5s;
       & > div.detail-wrapper
         width: 100%;
         min-height: 100%;
