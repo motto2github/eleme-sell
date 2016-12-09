@@ -2,7 +2,7 @@
   <div class="header">
     <div class="content-wrapper">
       <div class="avatar">
-        <img width="64" height="64" :src="seller.avatar" alt="" />
+        <img width="64" height="64" :src="seller.avatar" alt=""/>
       </div>
       <div class="content">
         <div class="title">
@@ -20,19 +20,22 @@
         <i class="icon-keyboard_arrow_right"></i>
       </div>
     </div>
-    <div class="bulletin-wrapper"></div>
+    <div class="bulletin-wrapper">
+      <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
+      <i class="icon-keyboard_arrow_right"></i>
+    </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-	export default {
-	  props: {
-	    seller: {type: Object}
-	  },
-	  created () {
-	    this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
-	  }
-	};
+  export default {
+    props: {
+      seller: {type: Object}
+    },
+    created () {
+      this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
+    }
+  };
 </script>
 
 <style type="text/stylus" lang="stylus">
@@ -40,21 +43,21 @@
   div.header
     color: #fff
     background-color: #999
-    &>div.content-wrapper
+    & > div.content-wrapper
       position: relative
       padding: 24px 12px 18px 24px
       font-size: 0
-      &>div.avatar
+      & > div.avatar
         display: inline-block
         vertical-align: top
-        &>img
+        & > img
           border-radius: 2px
-      &>div.content
+      & > div.content
         display: inline-block
         margin-left: 16px
-        &>div.title
+        & > div.title
           margin: 2px 0 8px 0
-          &>span.brand
+          & > span.brand
             display: inline-block
             vertical-align: top
             width: 30px
@@ -62,17 +65,17 @@
             bg-image('brand')
             background-size: 30px 18px
             background-repeat: no-repeat
-          &>span.name
+          & > span.name
             margin-left: 6px
             font-size: 16px
             line-height: 18px
             font-weight: bold
-        &>div.description
+        & > div.description
           margin-bottom: 10px
           line-height: 12px
           font-size: 12px
-        &>div.support
-          &>span.icon
+        & > div.support
+          & > span.icon
             display: inline-block
             vertical-align: top
             width: 12px
@@ -90,10 +93,10 @@
               bg-image('invoice_1')
             &.special
               bg-image('special_1')
-          &>span.text
+          & > span.text
             line-height: 12px
             font-size: 10px
-      &>div.support-count
+      & > div.support-count
         position: absolute
         right: 12px
         bottom: 14px
@@ -103,11 +106,37 @@
         border-radius: 14px
         background-color: rgba(0, 0, 0, .2)
         text-align: center
-        &>span.count
+        & > span.count
           vertical-align: top
           font-size: 10px
-        &>i.icon-keyboard_arrow_right
+        & > i.icon-keyboard_arrow_right
           margin-left: 2px
           line-height: 24px
           font-size: 10px
+    & > div.bulletin-wrapper
+      position: relative;
+      height: 28px;
+      line-height: 28px;
+      padding: 0 22px 0 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 10px;
+      background-color: rgba(7, 17, 27, .2);
+      & > span.bulletin-title
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 7px;
+        width: 22px;
+        height: 12px;
+        bg-image('bulletin');
+        background-size: 22px 12px;
+        background-repeat: no-repeat;
+      & > span.bulletin-text
+        vertical-align: top;
+        margin: 0 4px;
+      & > i.icon-keyboard_arrow_right
+        position: absolute;
+        right: 10px;
+        top: 8px;
 </style>

@@ -40,18 +40,11 @@
   @import "./common/stylus/mixin.styl"
   #app
     &>div.tab
-      display: flex
-      width: 100%
-      height: 40px
-      line-height: 40px
-      border-1px(rgba(7, 17, 27, .1))
+      display: flex; width: 100%; height: 40px; line-height: 40px; border-1px(rgba(7, 17, 27, .1));
       &>div.tab-item
-        flex: 1
-        text-align: center
+        flex: 1; text-align: center;
         &>a
-          display: block
-          font-size: 14px
-          color: rgb(77, 85, 93)
+          display: block; font-size: 14px; color: rgb(77, 85, 93);
           &.router-link-active
-            color: rgb(240, 20, 20)
+            color: rgb(240, 20, 20);
 </style>
