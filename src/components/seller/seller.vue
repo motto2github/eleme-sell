@@ -2,8 +2,8 @@
   <div>I am saller</div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   export default {};
 </script>
 
-<style></style>
+<style type="text/stylus" lang="stylus"></style>

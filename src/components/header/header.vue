@@ -35,7 +35,7 @@
 	};
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style type="text/stylus" lang="stylus">
   @import "../../common/stylus/mixin.styl";
   div.header
     color: #fff

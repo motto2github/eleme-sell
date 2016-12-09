@@ -12,9 +12,9 @@
 
 <script type="text/ecmascript-6">
   import header from 'components/header/header.vue';
-  
+
   const RES_CODE_SUCC = 0;
-  
+
   export default {
     data () {
       return {
@@ -36,9 +36,8 @@
 
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style type="text/stylus" lang="stylus">
   @import "./common/stylus/mixin.styl"
-
   #app
     &>div.tab
       display: flex
