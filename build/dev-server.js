@@ -17,23 +17,27 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 
 
+
+
 var appData = require('../data.json');
 
 var apiRouter = express.Router();
 
 apiRouter.get('/seller', function (req, res) {
-  res.json({code: 0, msg: 'ok', data: appData.seller});
+  res.json({code: 0, msg: 'ok', seller: appData.seller});
 });
 
 apiRouter.get('/goods', function (req, res) {
-  res.json({code: 0, msg: 'ok', data: appData.goods});
+  res.json({code: 0, msg: 'ok', goods: appData.goods});
 });
 
 apiRouter.get('/ratings', function (req, res) {
-  res.json({code: 0, msg: 'ok', data: appData.ratings});
+  res.json({code: 0, msg: 'ok', ratings: appData.ratings});
 });
 
 app.use('/api', apiRouter);
+
+
 
 
 var compiler = webpack(webpackConfig)

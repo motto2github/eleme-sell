@@ -18,9 +18,7 @@
 
 <script type="text/ecmascript-6">
   import header from 'components/header/header.vue';
-
   const RES_CODE_SUCC = 0;
-
   export default {
     data () {
       return {
@@ -29,9 +27,9 @@
     },
     created () {
       this.$http.get('/api/seller').then((res) => {
-        res = res.body;
-        if (res.code === RES_CODE_SUCC) {
-          this.seller = res.data;
+        let rd = res.data;
+        if (rd.code === RES_CODE_SUCC) {
+          this.seller = rd.seller;
         }
       });
     },
@@ -39,7 +37,6 @@
       'v-header': header
     }
   };
-
 </script>
 
 <style type="text/stylus" lang="stylus">
