@@ -213,6 +213,7 @@
       overflow: auto;
       background-color: rgba(7, 17, 27, .8);
       backdrop-filter: blur(10px);
+      animation-duration: .4s;
       & > div.detail-wrapper
         width: 100%;
         min-height: 100%;
