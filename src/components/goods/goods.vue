@@ -33,11 +33,13 @@
         </li>
       </ul>
     </div>
+    <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll';
+  import shopcart from 'components/shopcart/shopcart';
 
   const RES_CODE_SUCC = 0;
   export default {
@@ -48,18 +50,8 @@
         scrollY: 0
       };
     },
-    created () {
-      this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
-      this.$http.get('/api/goods').then((res) => {
-        let rd = res.data;
-        if (rd.code === RES_CODE_SUCC) {
-          this.goods = rd.goods;
-          this.$nextTick(() => {
-            this._initScroll();
-            this._calculateHeight();
-          });
-        }
-      });
+    props: {
+      seller: {type: Object}
     },
     computed: {
       currentIndex () {
@@ -97,6 +89,22 @@
           this.listHeight.push(height);
         }
       }
+    },
+    components: {
+      shopcart
+    },
+    created () {
+      this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
+      this.$http.get('/api/goods').then((res) => {
+        let rd = res.data;
+        if (rd.code === RES_CODE_SUCC) {
+          this.goods = rd.goods;
+          this.$nextTick(() => {
+            this._initScroll();
+            this._calculateHeight();
+          });
+        }
+      });
     }
   };
 </script>
