@@ -27,6 +27,9 @@
                 <div class="price">
                   <span class="now">￥{{food.price}}</span><span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
                 </div>
+                <div class="cartcontrol-wrapper">
+                  <cartcontrol :food="food"></cartcontrol>
+                </div>
               </div>
             </li>
           </ul>
@@ -40,6 +43,7 @@
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll';
   import shopcart from 'components/shopcart/shopcart';
+  import cartcontrol from 'components/cartcontrol/cartcontrol';
 
   const RES_CODE_SUCC = 0;
   export default {
@@ -74,7 +78,7 @@
       },
       _initScroll () {
         this.menuScroll = new BScroll(this.$refs.menuWrapper, {click: true});
-        this.foodsScroll = new BScroll(this.$refs.foodsWrapper, {probeType: 3});
+        this.foodsScroll = new BScroll(this.$refs.foodsWrapper, {click: true, probeType: 3});
         this.foodsScroll.on('scroll', (pos) => {
           this.scrollY = Math.abs(Math.round(pos.y));
         });
@@ -90,9 +94,7 @@
         }
       }
     },
-    components: {
-      shopcart
-    },
+    components: {shopcart, cartcontrol},
     created () {
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
       this.$http.get('/api/goods').then((res) => {
@@ -210,4 +212,8 @@
               text-decoration: line-through;
               font-size: 10px;
               color: rgb(147, 153, 159);
+          .cartcontrol-wrapper
+            position: absolute;
+            right: 0;
+            bottom: 12px;
 </style>
