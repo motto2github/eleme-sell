@@ -28,7 +28,7 @@
                   <span class="now">￥{{food.price}}</span><span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
                 </div>
                 <div class="cartcontrol-wrapper">
-                  <cartcontrol :food="food"></cartcontrol>
+                  <cartcontrol :food="food" @add-cart="_drop"></cartcontrol>
                 </div>
               </div>
             </li>
@@ -36,7 +36,7 @@
         </li>
       </ul>
     </div>
-    <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+    <shopcart ref="shopcart" :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
 </template>
 
@@ -67,6 +67,15 @@
           }
         }
         return 0;
+      },
+      selectFoods () {
+        let foods = [];
+        this.goods.forEach((good) => {
+          good.foods.forEach((food) => {
+            if (food.count) foods.push(food);
+          });
+        });
+        return foods;
       }
     },
     methods: {
@@ -75,6 +84,9 @@
         let foodList = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook');
         let el = foodList[index];
         this.foodsScroll.scrollToElement(el, 300);
+      },
+      _drop (el) {
+        this.$refs.shopcart.drop(el);
       },
       _initScroll () {
         this.menuScroll = new BScroll(this.$refs.menuWrapper, {click: true});

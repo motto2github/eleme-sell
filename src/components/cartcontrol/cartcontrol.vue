@@ -23,6 +23,7 @@
         if (!event._constructed) return;
         if (!this.food.count) Vue.set(this.food, 'count', 1);
         else this.food.count++;
+        this.$emit('add-cart', event.target);
       },
       decreaseCart (event) {
         if (!event._constructed) return;
