@@ -21,7 +21,9 @@
             <div class="cartcontrol-wrapper">
               <cartcontrol :food="food" @add-cart="emitAdd"></cartcontrol>
             </div>
-            <div class="buy" v-show="!food.count" @click.stop.prevent="add">加入购物车</div>
+            <transition name="fade">
+              <div class="buy" v-show="!food.count" @click.stop.prevent="add">加入购物车</div>
+            </transition>
           </div>
         </div>
         <split v-show="food.info"></split>
@@ -149,6 +151,11 @@
         font-size 10px
         color #fff
         background-color rgb(0, 160, 220)
+        opacity 1
+        &.fade-enter-active, &.fade-leave-active
+          transition all .3s linear;
+        &.fade-enter, &.fade-leave-active
+          opacity 0
     .info
       padding 18px
       .title
