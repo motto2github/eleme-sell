@@ -20,9 +20,9 @@
             </div>
           </div>
           <div class="cartcontrol-wrapper">
-            <v-cartcontrol :food="food"></v-cartcontrol>
+            <v-cartcontrol :food="food" @add-cart="emitAdd"></v-cartcontrol>
           </div>
-          <div class="buy" v-show="!food.count" @click="addFirst">加入购物车</div>
+          <div class="buy" v-show="!food.count" @click="add">加入购物车</div>
         </div>
       </div>
     </transition>
@@ -51,10 +51,13 @@
           else this.scroll.refresh();
         });
       },
-      addFirst (event) {
+      add (event) {
         if (!event._constructed) return;
         Vue.set(this.food, 'count', 1);
-        this.$emit('add-first', event.target);
+        this.emitAdd(event.target);
+      },
+      emitAdd (el) {
+        this.$emit('add', el);
       }
     }
   };

@@ -2,7 +2,7 @@
   <div class="goods">
     <div class="menu-wrapper" ref="menuWrapper">
       <ul>
-        <li v-for="(item, index) in goods" class="menu-item" :class="{'current': currentIndex === index}" @click="selectMenu(index, $event)">
+        <li v-for="(item, index) in goods" class="menu-item" :class="{'current': currentIndex === index}" @click.stop="selectMenu(index, $event)">
           <span class="text">
             <span v-show="item.type > 0" class="icon" :class="classMap[item.type]"></span>{{item.name}}
           </span>
@@ -14,7 +14,7 @@
         <li v-for="item in goods" class="food-list food-list-hook">
           <h1 class="title">{{item.name}}</h1>
           <ul>
-            <li v-for="food in item.foods" class="food-item" @click="selectFood(food, $event)">
+            <li v-for="food in item.foods" class="food-item" @click.stop="selectFood(food, $event)">
               <div class="icon">
                 <img width="57" height="57" :src="food.icon">
               </div>
@@ -37,7 +37,7 @@
       </ul>
     </div>
     <shopcart ref="shopcart" :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
-    <v-food :food="selectedFood" ref="food" @add-first="_drop"></v-food>
+    <v-food :food="selectedFood" ref="food" @add="_drop"></v-food>
   </div>
 </template>
 
