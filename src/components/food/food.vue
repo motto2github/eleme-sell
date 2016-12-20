@@ -38,18 +38,18 @@
             <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings" @select-type-change="selectTypeChange" @only-content-toggle="onlyContentToggle"></ratingselect>
             <div class="rating-wrapper">
               <ul v-show="food.ratings && food.ratings.length">
-                <li v-for="(rating, index) of food.ratings" :key="index" class="rating-item" v-show="needShow(rating.rateType, rating.text)">
+                <li v-for="(rating, index) of food.ratings" :key="index" class="rating-item" v-show="needShow(rating.rateType, rating.text)" ref="ratings">
                   <div class="user">
                     <span class="name">{{rating.username}}</span>
                     <img class="avatar" width="12" height="12" :src="rating.avatar">
                   </div>
-                  <div class="time">{{rating.rateTime}}</div>
+                  <div class="time">{{rating.rateTime | formatDate}}</div>
                   <p class="text">
                     <span :class="{'icon-thumb_up': rating.rateType === 0, 'icon-thumb_down': rating.rateType === 1}"></span>{{rating.text}}
                   </p>
                 </li>
               </ul>
-              <div class="no-rating" v-show="!food.ratings || !food.ratings.length"></div>
+              <div class="no-rating" v-show="needShowNoRating()">暂无评价</div>
             </div>
           </div>
         </div>
@@ -64,6 +64,7 @@
   import Vue from 'vue';
   import split from 'components/split/split.vue';
   import ratingselect from 'components/ratingselect/ratingselect.vue';
+  import {formatDate} from 'common/js/date.js';
 
   const SELECT_TYPE = {POSITIVE: 0, NEGATIVE: 1, ALL: 2};
 
@@ -114,6 +115,21 @@
         if (this.onlyContent && !text) return false;
         if (this.selectType === SELECT_TYPE.ALL) return true;
         return rateType === this.selectType;
+      },
+      needShowNoRating () {
+        if (!this.food.ratings) return true;
+        const ratings = this.food.ratings.filter((rating) => {
+          if (this.onlyContent && !rating.text) return false;
+          if (this.selectType === SELECT_TYPE.ALL) return true;
+          return rating.rateType === this.selectType;
+        });
+        return ratings.length === 0;
+      }
+    },
+    filters: {
+      formatDate (time) {
+        const date = new Date(time);
+        return formatDate(date, 'yyyy-MM-dd HH:mm');
       }
     }
   };
@@ -261,4 +277,8 @@
               color rgb(0, 160, 220)
             .icon-thumb_down
               color rgb(147, 153, 159)
+        .no-rating
+          padding 16px 0
+          font-size 12px
+          color rgb(147, 153, 159)
 </style>
