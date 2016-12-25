@@ -101,19 +101,14 @@
       }
     },
     created () {
-      const ratings = window.sessionStorage.ratings;
-      if (ratings) this.ratings = JSON.parse(ratings);
-      else {
-        this.$http.get('/api/ratings').then((res) => {
-          let rd = res.data;
-          if (rd.code === 0) {
-            this.ratings = rd.ratings;
-            window.sessionStorage.ratings = JSON.stringify(this.ratings);
-          }
-        });
-      }
-      this.$nextTick(() => {
-        this.scroll = new BScroll(this.$refs.ratings, {click: true});
+      this.$http.get('/api/ratings').then((res) => {
+        let rd = res.data;
+        if (rd.code === 0) {
+          this.ratings = rd.ratings;
+          this.$nextTick(() => {
+            this.scroll = new BScroll(this.$refs.ratings, {click: true});
+          });
+        }
       });
     }
   };
