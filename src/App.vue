@@ -6,7 +6,7 @@
         <router-link to="/goods">商品</router-link>
       </div>
       <div class="tab-item">
-        <router-link to="/ratings">评论</router-link>
+        <router-link to="/ratings">评价</router-link>
       </div>
       <div class="tab-item">
         <router-link to="/seller">商家</router-link>
@@ -26,12 +26,17 @@
       };
     },
     created () {
-      this.$http.get('/api/seller').then((res) => {
-        let rd = res.data;
-        if (rd.code === RES_CODE_SUCC) {
-          this.seller = rd.seller;
-        }
-      });
+      const seller = window.sessionStorage.seller;
+      if (seller) this.seller = JSON.parse(seller);
+      else {
+        this.$http.get('/api/seller').then((res) => {
+          let rd = res.data;
+          if (rd.code === RES_CODE_SUCC) {
+            this.seller = rd.seller;
+            window.sessionStorage.seller = JSON.stringify(this.seller);
+          }
+        });
+      }
     },
     components: {
       'v-header': header

@@ -47,7 +47,6 @@
   import cartcontrol from 'components/cartcontrol/cartcontrol';
   import food from 'components/food/food.vue';
 
-  const RES_CODE_SUCC = 0;
   export default {
     components: {shopcart, cartcontrol, 'v-food': food},
     data () {
@@ -119,7 +118,7 @@
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
       this.$http.get('/api/goods').then((res) => {
         let rd = res.data;
-        if (rd.code === RES_CODE_SUCC) {
+        if (rd.code === 0) {
           this.goods = rd.goods;
           this.$nextTick(() => {
             this._initScroll();
