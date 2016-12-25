@@ -74,7 +74,7 @@
       return {
         showFlag: false,
         selectType: SELECT_TYPE.ALL,
-        onlyContent: true,
+        onlyContent: false,
         desc: {all: '全部', positive: '推荐', negative: '吐槽'}
       };
     },
@@ -97,7 +97,7 @@
       show () {
         this.showFlag = true;
         this.selectType = SELECT_TYPE.ALL;
-        this.onlyContent = true;
+        this.onlyContent = false;
         this.$nextTick(() => {
           if (!this.scroll) this.scroll = new BScroll(this.$refs.food, {click: true});
           else this.scroll.refresh();

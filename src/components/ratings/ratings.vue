@@ -72,7 +72,7 @@
       return {
         ratings: [],
         selectType: SELECT_TYPE.ALL,
-        onlyContent: true
+        onlyContent: false
       };
     },
     filters: {
