@@ -20,7 +20,8 @@ let router = new VueRouter({
   routes: [
     {path: '/goods', component: goods},
     {path: '/ratings', component: ratings},
-    {path: '/seller', component: seller}
+    {path: '/seller', component: seller},
+    {path: '**', redirect: '/goods'}
   ]
 });
 

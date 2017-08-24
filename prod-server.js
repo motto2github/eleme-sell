@@ -1,5 +1,6 @@
+var path = require('path');
 var express = require('express');
-var config = require('./config/index.js');
+var config = require(path.join(__dirname, 'config', 'index.js'));
 
 var port = process.env.PORT || config.build.port;
 
@@ -14,7 +15,7 @@ router.get('/', function (req, res, next) {
 
 app.use(router);
 
-var appData = require('./data.json');
+var appData = require(path.join(__dirname, 'data.json'));
 
 var apiRouter = express.Router();
 
@@ -32,7 +33,7 @@ apiRouter.get('/ratings', function (req, res) {
 
 app.use('/api', apiRouter);
 
-app.use(express.static('./dist'));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 module.exports = app.listen(port, function (err) {
   if (err) {
